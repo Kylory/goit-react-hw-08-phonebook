@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import UserMenu from "../UserMenu/UserMenu";
 import styles from "./AppBar.module.css";
 
 export default function AppBar() {
@@ -36,6 +37,7 @@ export default function AppBar() {
       >
         Log In
       </NavLink>
+      <UserMenu />
     </nav>
   );
 }
