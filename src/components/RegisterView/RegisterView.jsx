@@ -15,12 +15,6 @@ export default function RegisterVuew() {
     setStateName("");
     setStateEmail("");
     setStatePassword("");
-    // const credentials = {
-    //   name: stateName,
-    //   email: stateEmail,
-    //   password: statePassword,
-    // };
-    // console.log(credentials);
   };
 
   const handleChange = (e) => {

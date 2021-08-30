@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
-import { contactsOperations } from 'redux/contacts';
+import { combineReducers } from "redux";
+import { createReducer } from "@reduxjs/toolkit";
+import { contactsOperations } from "redux/contacts";
 
 const contactsReducer = createReducer([], {
   [contactsOperations.DB_fetchContacts.fulfilled]: (_, { payload }) => payload,
   [contactsOperations.addContact]: (state, { payload }) => [...state, payload],
   [contactsOperations.DB_postContact.fulfilled]: () => {},
   [contactsOperations.deleteContact]: (state, { payload }) =>
-    state.filter(contact => contact.id !== payload),
+    state.filter((contact) => contact.id !== payload),
 });
 
-const filterReducer = createReducer('', {
+const filterReducer = createReducer("", {
   [contactsOperations.filterContacts]: (_, { payload }) => payload,
 });
 
@@ -40,7 +40,7 @@ const errorReducer = createReducer(null, {
 });
 
 export const rootReducer = combineReducers({
-  contacts: contactsReducer,
+  contactsList: contactsReducer,
   filter: filterReducer,
   isLoading: isLoadingReducer,
   error: errorReducer,

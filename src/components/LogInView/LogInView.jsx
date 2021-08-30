@@ -1,25 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as authOperations from "redux/auth/authOperations";
+
 import styles from "./LogInView.module.css";
 
 export default function LogInView() {
-  const [stateEmail, setStateEmail] = useState("");
-  const [statePassword, setStatePassword] = useState("");
-  const [stateCreds, setStateCreds] = useState("");
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const credentials = {
-  //     email: stateEmail,
-  //     password: statePassword,
-  //   };
-  //   console.log(credentials);
-  // };
+  const [email, setStateEmail] = useState("");
+  const [password, setStatePassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStateCreds({ email: stateEmail, password: statePassword });
-
-    console.log(stateCreds);
+    dispatch(authOperations.logIn({ email, password }));
+    setStateEmail("");
+    setStatePassword("");
   };
 
   const handleChange = (e) => {
@@ -45,7 +39,7 @@ export default function LogInView() {
         <input
           name="email"
           type="email"
-          value={stateEmail}
+          value={email}
           onChange={handleChange}
         />
       </label>
@@ -55,7 +49,7 @@ export default function LogInView() {
         <input
           name="password"
           type="password"
-          value={statePassword}
+          value={password}
           onChange={handleChange}
         />
       </label>
