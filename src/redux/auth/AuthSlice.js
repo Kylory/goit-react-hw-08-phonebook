@@ -22,11 +22,12 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.logOut.fulfilled](state) {
-      state = initialState;
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
     },
     [authOperations.getUserInfo.fulfilled](state, action) {
-      console.log(action);
-      state.user = { ...action.payload };
+      state.user = action.payload;
       state.isLoggedIn = true;
     },
   },

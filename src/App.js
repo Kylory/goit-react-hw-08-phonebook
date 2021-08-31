@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "./redux/auth";
+import { contactsOperations } from "redux/contacts";
 import HomeView from "./components/HomeView/HomeView";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactsList from "./components/ContactsList/ContactsList";
@@ -14,8 +15,20 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(authOperations.getUserInfo());
+    async function refreshPage() {
+      await dispatch(authOperations.getUserInfo());
+      await dispatch(contactsOperations.DB_fetchContacts());
+    }
+    refreshPage();
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(authOperations.getUserInfo());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(contactsOperations.DB_fetchContacts());
+  // }, [dispatch]);
 
   return (
     <>
