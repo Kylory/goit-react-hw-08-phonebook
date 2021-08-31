@@ -24,6 +24,11 @@ const authSlice = createSlice({
     [authOperations.logOut.fulfilled](state) {
       state = initialState;
     },
+    [authOperations.getUserInfo.fulfilled](state, action) {
+      console.log(action);
+      state.user = { ...action.payload };
+      state.isLoggedIn = true;
+    },
   },
 });
 

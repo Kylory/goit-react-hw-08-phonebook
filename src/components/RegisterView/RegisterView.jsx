@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as authOperations from "redux/auth/authOperations";
 import styles from "./RegisterView.module.css";
 
-export default function RegisterVuew() {
+export default function RegisterView() {
   const [name, setStateName] = useState("");
   const [email, setStateEmail] = useState("");
   const [password, setStatePassword] = useState("");

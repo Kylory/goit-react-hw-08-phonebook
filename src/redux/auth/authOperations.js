@@ -51,7 +51,25 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const getUserInfo = () => {
-  // const { data } = await axios.get(`${BASE_URL}/contacts`);
-  // return data;
-};
+export const getUserInfo = createAsyncThunk(
+  "auth/getUserInfo",
+  async (_, thunkAPI, { rejectWithValue }) => {
+    // console.log(thunkAPI.getState());
+    const state = thunkAPI.getState();
+    const LStoken = state.auth.token;
+
+    // console.log(token);
+
+    if (token === null) {
+      return;
+    }
+
+    token.set(LStoken);
+    try {
+      const { data } = await axios.get("/users/current");
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

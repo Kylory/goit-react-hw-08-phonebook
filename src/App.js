@@ -1,21 +1,26 @@
 import { Switch, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { authOperations } from "./redux/auth";
 import HomeView from "./components/HomeView/HomeView";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactsList from "./components/ContactsList/ContactsList";
 import SearchContacts from "./components/SearchContacts/SearchContacts";
 import AppBar from "./components/AppBar/AppBar";
-import RegisterVuew from "./components/RegisterView/RegisterView";
+import RegisterView from "./components/RegisterView/RegisterView";
 import LogInView from "./components/LogInView/LogInView";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.getUserInfo());
+  }, [dispatch]);
+
   return (
     <>
       <AppBar />
-      {/* <h2>Phonebook</h2>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <SearchContacts />
-      <ContactsList /> */}
+
       <Switch>
         <Route path="/" exact>
           <HomeView />
@@ -28,7 +33,7 @@ const App = () => {
         </Route>
 
         <Route path="/register">
-          <RegisterVuew />
+          <RegisterView />
         </Route>
 
         <Route path="/login">
