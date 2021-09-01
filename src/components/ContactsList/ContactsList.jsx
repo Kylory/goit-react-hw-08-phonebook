@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { contactsSelectors, contactsOperations } from "redux/contacts";
+import { authSelectors } from "redux/auth";
 import styles from "./ContactsList.module.css";
 
 export default function ContactsList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
   const loading = useSelector(contactsSelectors.isLoading);
-  // const error = useSelector(contactsSelectors.error);
+  const isLoggedIn = useSelector(authSelectors.isLoggedIn);
+  const error = useSelector(contactsSelectors.error);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(contactsOperations.DB_fetchContacts());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(contactsOperations.DB_fetchContacts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   async function deleteItem(id) {
     dispatch(contactsOperations.deleteContact(id));
@@ -23,7 +27,7 @@ export default function ContactsList() {
     <>
       <div className={styles.LoadingWrapper}>
         {loading && <div>Сontact synchronization...</div>}
-        {/* {error && <div>{error.message}, no conection to DB</div>} */}
+        {error && <div>{error.message}, no conection to DB</div>}
       </div>
       <ul className={styles.ContactsList}>
         {filteredContacts &&

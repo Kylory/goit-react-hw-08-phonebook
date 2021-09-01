@@ -4,7 +4,7 @@ import styles from "./AuthNav.module.css";
 
 export default function AuthNav() {
   return (
-    <>
+    <div className={styles.AuthNav}>
       <NavLink
         to="/register"
         className={styles.link}
@@ -20,6 +20,6 @@ export default function AuthNav() {
       >
         Log In
       </NavLink>
-    </>
+    </div>
   );
 }

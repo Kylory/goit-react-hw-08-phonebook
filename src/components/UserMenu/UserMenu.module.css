@@ -1,3 +1,15 @@
 .UserMenu {
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  margin-left: auto;
+}
+
+p {
+  margin-top: 0;
+}
+
+button {
+  /* display: inline-block; */
+  /* border: transparent; */
+  /* margin-left: 20px; */
 }

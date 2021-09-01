@@ -1,22 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import * as contactsAPI from "APIServise/contactsAPI";
 import { createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import shortid from "shortid";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
-
-// export const DB_fetchContacts = createAsyncThunk(
-//   'contacts/fetchContacts',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const contacts = await contactsAPI.fetchContacts();
-//       return contacts;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   },
-// );
 
 export const DB_fetchContacts = createAsyncThunk(
   "contacts/fetchContacts",
@@ -29,18 +16,6 @@ export const DB_fetchContacts = createAsyncThunk(
     }
   }
 );
-
-// export const DB_postContact = createAsyncThunk(
-//   "contacts/postContact",
-//   async ({ name, number }, { rejectWithValue }) => {
-//     try {
-//       const response = await contactsAPI.postContact(name, number);
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
 
 export const DB_postContact = createAsyncThunk(
   "contacts/postContact",
@@ -56,18 +31,6 @@ export const DB_postContact = createAsyncThunk(
     }
   }
 );
-
-// export const DB_deleteContact = createAsyncThunk(
-//   "contacts/deleteContact",
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const response = await contactsAPI.deleteContact(id);
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
 
 export const DB_deleteContact = createAsyncThunk(
   "contacts/deleteContact",
@@ -93,5 +56,4 @@ export const addContact = createAction(
 );
 
 export const deleteContact = createAction("contacts/deleteContact");
-
 export const filterContacts = createAction("contacts/filterContacts");

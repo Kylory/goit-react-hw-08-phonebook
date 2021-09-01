@@ -1,28 +1,40 @@
-import { Switch, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { authOperations } from "./redux/auth";
+import { Switch } from "react-router-dom";
+import { useEffect, Suspense, lazy } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authOperations, authSelectors } from "./redux/auth";
 import { contactsOperations } from "redux/contacts";
-import HomeView from "./components/HomeView/HomeView";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactsList from "./components/ContactsList/ContactsList";
-import SearchContacts from "./components/SearchContacts/SearchContacts";
-import AppBar from "./components/AppBar/AppBar";
-import RegisterView from "./components/RegisterView/RegisterView";
-import LogInView from "./components/LogInView/LogInView";
-import PrivateRoute from "./components/PrivateRoute";
+
+import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
+
+import Container from "components/Container/Container";
+import AppBar from "components/AppBar/AppBar";
+import ContactForm from "components/ContactForm/ContactForm";
+import ContactsList from "components/ContactsList/ContactsList";
+import SearchContacts from "components/SearchContacts/SearchContacts";
+
+const HomeView = lazy(() => import("./components/HomeView/HomeView"));
+const RegisterView = lazy(() =>
+  import("./components/RegisterView/RegisterView")
+);
+const LogInView = lazy(() => import("./components/LogInView/LogInView"));
 
 const App = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(authSelectors.isLoggedIn);
+  const isFetchingCurrentUser = useSelector(
+    authSelectors.isFetchingCurrentUser
+  );
 
   useEffect(() => {
     async function refreshPage() {
       await dispatch(authOperations.getUserInfo());
-      await dispatch(contactsOperations.DB_fetchContacts());
+      if (isLoggedIn) {
+        dispatch(contactsOperations.DB_fetchContacts());
+      }
     }
     refreshPage();
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn]);
 
   // useEffect(() => {
   //   dispatch(authOperations.getUserInfo());
@@ -33,33 +45,33 @@ const App = () => {
   // }, [dispatch]);
 
   return (
-    <>
-      <AppBar />
+    !isFetchingCurrentUser && (
+      <Container>
+        <AppBar />
 
-      <Switch>
-        <Route path="/" exact>
-          <HomeView />
-        </Route>
+        <Switch>
+          <Suspense fallback={""}>
+            <PublicRoute path="/" exact>
+              <HomeView />
+            </PublicRoute>
 
-        <PrivateRoute path="/contacts">
-          <ContactForm />
-          <SearchContacts />
-          <ContactsList />
-        </PrivateRoute>
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <ContactForm />
+              <SearchContacts />
+              <ContactsList />
+            </PrivateRoute>
 
-        {/* <PublicRoute> */}
-        <PublicRoute path="/register" restricted>
-          <RegisterView />
-        </PublicRoute>
-        {/* </PublicRoute> */}
+            <PublicRoute path="/register" restricted>
+              <RegisterView />
+            </PublicRoute>
 
-        {/* <PublicRoute> */}
-        <PublicRoute path="/login" restricted>
-          <LogInView />
-        </PublicRoute>
-        {/* </PublicRoute> */}
-      </Switch>
-    </>
+            <PublicRoute path="/login" redirectTo="/contacts" restricted>
+              <LogInView />
+            </PublicRoute>
+          </Suspense>
+        </Switch>
+      </Container>
+    )
   );
 };
 
