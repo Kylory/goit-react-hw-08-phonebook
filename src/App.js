@@ -10,6 +10,8 @@ import SearchContacts from "./components/SearchContacts/SearchContacts";
 import AppBar from "./components/AppBar/AppBar";
 import RegisterView from "./components/RegisterView/RegisterView";
 import LogInView from "./components/LogInView/LogInView";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "components/PublicRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,19 +41,23 @@ const App = () => {
           <HomeView />
         </Route>
 
-        <Route path="/contacts">
+        <PrivateRoute path="/contacts">
           <ContactForm />
           <SearchContacts />
           <ContactsList />
-        </Route>
+        </PrivateRoute>
 
-        <Route path="/register">
+        {/* <PublicRoute> */}
+        <PublicRoute path="/register" restricted>
           <RegisterView />
-        </Route>
+        </PublicRoute>
+        {/* </PublicRoute> */}
 
-        <Route path="/login">
+        {/* <PublicRoute> */}
+        <PublicRoute path="/login" restricted>
           <LogInView />
-        </Route>
+        </PublicRoute>
+        {/* </PublicRoute> */}
       </Switch>
     </>
   );
