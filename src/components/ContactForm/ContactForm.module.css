@@ -1,9 +1,12 @@
 .contactForm {
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .contactForm input {
+  width: 200px;
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;

@@ -25,27 +25,27 @@ export default function ContactsList() {
 
   return (
     <>
-      <div className={styles.LoadingWrapper}>
-        {loading && <div>Сontact synchronization...</div>}
-        {error && <div>{error.message}, no conection to DB</div>}
-      </div>
-      <ul className={styles.ContactsList}>
-        {filteredContacts &&
-          filteredContacts.map((contact) => (
-            <li key={contact.id}>
-              {contact.name}
-              {": "}
-              {contact.number}
-              <button
-                onClick={() => {
-                  deleteItem(contact.id);
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-      </ul>
+      {error ? (
+        <div className={styles.error}>{error.message}, no conection to DB</div>
+      ) : (
+        <ul className={styles.ContactsList}>
+          {filteredContacts &&
+            filteredContacts.map((contact) => (
+              <li key={contact.id}>
+                {contact.name}
+                {": "}
+                {contact.number}
+                <button
+                  onClick={() => {
+                    deleteItem(contact.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+        </ul>
+      )}
     </>
   );
 }

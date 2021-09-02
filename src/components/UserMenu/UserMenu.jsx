@@ -7,7 +7,7 @@ export default function UserMenu() {
   const dispatch = useDispatch();
   return (
     <div className={styles.UserMenu}>
-      <p>Hello, {name}</p>
+      <span className={styles.name}>Hello, {name}</span>
       <button
         type="button"
         onClick={() => {
