@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Button, TextField } from "@material-ui/core";
 import * as authOperations from "redux/auth/authOperations";
 import styles from "./RegisterView.module.css";
 
@@ -38,33 +39,79 @@ export default function RegisterView() {
   };
 
   return (
-    <form className={styles} onSubmit={handleSubmit}>
-      <label>
-        Name
-        <input name="name" type="text" value={name} onChange={handleChange} />
-      </label>
-
-      <label>
-        Email
-        <input
+    <>
+      <form
+        noValidate
+        autoComplete="off"
+        className={styles.regForm}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          className={styles.name}
+          name="name"
+          type="text"
+          value={name}
+          onChange={handleChange}
+          // id="outlined-basic"
+          size="small"
+          label="Name"
+          variant="outlined"
+        />
+        <TextField
+          className={styles.email}
           name="email"
           type="email"
           value={email}
           onChange={handleChange}
+          // id="outlined-basic"
+          size="small"
+          label="Email"
+          variant="outlined"
         />
-      </label>
-
-      <label>
-        Password
-        <input
+        <TextField
+          className={styles.password}
           name="password"
           type="password"
           value={password}
           onChange={handleChange}
+          // id="outlined-basic"
+          size="small"
+          label="Password"
+          variant="outlined"
         />
-      </label>
+        <Button type="submit" size="small" variant="contained">
+          Register
+        </Button>
+      </form>
 
-      <button type="submit">Register</button>
-    </form>
+      {/* <form className={styles} onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input name="name" type="text" value={name} onChange={handleChange} />
+        </label>
+
+        <label>
+          Email
+          <input
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </label>
+
+        <button type="submit">Register</button>
+      </form> */}
+    </>
   );
 }

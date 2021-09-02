@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Button, TextField } from "@material-ui/core";
 import * as authOperations from "redux/auth/authOperations";
 
 import styles from "./LogInView.module.css";
@@ -33,28 +34,65 @@ export default function LogInView() {
   };
 
   return (
-    <form className={styles} onSubmit={handleSubmit}>
-      <label>
-        Email
-        <input
-          name="email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-        />
-      </label>
+    <form
+      className={styles}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        className={styles.email}
+        name="email"
+        type="email"
+        value={email}
+        onChange={handleChange}
+        size="small"
+        label="Name"
+        variant="outlined"
+      />
 
-      <label>
-        Password
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-        />
-      </label>
-
-      <button type="submit">Log in</button>
+      <TextField
+        className={styles.password}
+        name="password"
+        type="password"
+        value={password}
+        onChange={handleChange}
+        size="small"
+        label="Password"
+        variant="outlined"
+      />
+      <Button
+        className={styles.button}
+        type="submit"
+        size="small"
+        variant="contained"
+      >
+        Log in
+      </Button>
     </form>
+
+    // <form className={styles} onSubmit={handleSubmit}>
+    //   <label>
+    //     Email
+    //     <input
+    //       name="email"
+    //       type="email"
+    //       value={email}
+    //       onChange={handleChange}
+    //     />
+    //   </label>
+
+    //   <label>
+    //     Password
+    //     <input
+    //       name="password"
+    //       type="password"
+    //       value={password}
+    //       onChange={handleChange}
+    //     />
+    //   </label>
+
+    //   <button type="submit">Log in</button>
+    //  </form>
   );
 }

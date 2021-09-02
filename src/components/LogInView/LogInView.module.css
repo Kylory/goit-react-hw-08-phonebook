@@ -1,9 +1,18 @@
 form {
-  width: 300px;
-}
-
-label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  width: 300px;
+  padding-top: 20px;
+}
+
+.name {
+  margin-bottom: 20px;
+}
+
+.email {
+  margin-bottom: 20px;
+}
+
+.password {
+  margin-bottom: 20px;
 }
