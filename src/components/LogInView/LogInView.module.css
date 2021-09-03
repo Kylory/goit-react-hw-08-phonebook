@@ -1,18 +1,14 @@
-form {
+.logIn {
   display: flex;
   flex-direction: column;
   width: 300px;
   padding-top: 20px;
 }
 
-.name {
+.logIn .email {
   margin-bottom: 20px;
 }
 
-.email {
-  margin-bottom: 20px;
-}
-
-.password {
+.logIn .password {
   margin-bottom: 20px;
 }

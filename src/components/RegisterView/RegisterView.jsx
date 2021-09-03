@@ -41,9 +41,9 @@ export default function RegisterView() {
   return (
     <>
       <form
+        className={styles.regForm}
         noValidate
         autoComplete="off"
-        className={styles.regForm}
         onSubmit={handleSubmit}
       >
         <TextField

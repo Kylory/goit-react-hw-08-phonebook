@@ -35,7 +35,7 @@ export default function LogInView() {
 
   return (
     <form
-      className={styles}
+      className={styles.logIn}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}

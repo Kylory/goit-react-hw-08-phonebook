@@ -8,3 +8,7 @@
 .name {
   margin-right: 10px;
 }
+
+.UserMenu button {
+  height: 21px;
+}

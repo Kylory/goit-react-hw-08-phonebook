@@ -6,7 +6,7 @@ import styles from "./ContactsList.module.css";
 
 export default function ContactsList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
-  const loading = useSelector(contactsSelectors.isLoading);
+  // const loading = useSelector(contactsSelectors.isLoading);
   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
   const error = useSelector(contactsSelectors.error);
 

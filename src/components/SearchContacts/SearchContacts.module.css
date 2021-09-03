@@ -1,9 +1,9 @@
 .searchContacts {
-  display: flex;
-  flex-direction: column;
+  width: 300px;
+  /* display: flex;
+  flex-direction: column; */
 }
 
-.searchContacts input {
-  width: 200px;
+/* .searchContacts input {
   margin-top: 10px;
-}
+} */

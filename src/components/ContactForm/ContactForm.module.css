@@ -1,17 +1,34 @@
-.contactForm {
+/* .contactForm {
+  width: 300px;
   display: flex;
   flex-direction: column;
   padding-top: 10px;
   padding-bottom: 30px;
-}
+} */
 
-.contactForm input {
+/* .contactForm input {
   width: 200px;
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
+} */
+
+/* .contactForm button {
+  width: 120px;
+} */
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
-.contactForm button {
-  width: 120px;
+.contactForm .name {
+  margin-bottom: 20px;
+}
+
+.contactForm .number {
+  margin-bottom: 20px;
 }

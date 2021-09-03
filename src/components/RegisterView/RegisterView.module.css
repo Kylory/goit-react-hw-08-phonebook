@@ -1,22 +1,18 @@
 .regForm {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   padding-top: 20px;
 }
 
-/* label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-} */
-
-.name {
+.regForm .name {
   margin-bottom: 20px;
 }
 
-.email {
+.regForm .email {
   margin-bottom: 20px;
 }
 
-.password {
+.regForm .password {
   margin-bottom: 20px;
 }
