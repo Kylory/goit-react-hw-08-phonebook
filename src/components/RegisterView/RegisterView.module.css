@@ -3,6 +3,8 @@
   flex-direction: column;
   width: 300px;
   padding-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .regForm .name {

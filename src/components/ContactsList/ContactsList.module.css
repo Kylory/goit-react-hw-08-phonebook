@@ -1,5 +1,7 @@
 .ContactsList {
   padding-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .ContactsList li:not(:last-child) {
