@@ -1,98 +1,132 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, TextField } from "@material-ui/core";
 import * as authOperations from "redux/auth/authOperations";
+import { authSelectors } from "redux/auth";
+import PositionedSnackbar from "../Snackbar";
+
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import styles from "./LogInView.module.css";
 
 export default function LogInView() {
-  const [email, setStateEmail] = useState("");
-  const [password, setStatePassword] = useState("");
+  const [values, setValues] = useState({
+    amount: "",
+    email: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false,
+  });
+
+  const logInUserRejected = useSelector(authSelectors.logInUserRejected);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.logInUserRejected());
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
-    setStateEmail("");
-    setStatePassword("");
+    dispatch(
+      authOperations.logIn({ email: values.email, password: values.password })
+    );
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    switch (name) {
-      case "email":
-        setStateEmail(value);
-        break;
+    setValues({ ...values, [name]: value });
+    // switch (name) {
+    //   case "email":
+    //     setValues({ ...values, [name]: value });
+    //     break;
 
-      case "password":
-        setStatePassword(value);
-        break;
+    //   case "password":
+    //     setValues({ ...values, [name]: value });
+    //     break;
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
+  };
+
+  const PassHandleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
-    <form
-      className={styles.logIn}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        className={styles.email}
-        name="email"
-        type="email"
-        value={email}
-        onChange={handleChange}
-        size="small"
-        label="Name"
-        variant="outlined"
-      />
-
-      <TextField
-        className={styles.password}
-        name="password"
-        type="password"
-        value={password}
-        onChange={handleChange}
-        size="small"
-        label="Password"
-        variant="outlined"
-      />
-      <Button
-        className={styles.button}
-        type="submit"
-        size="small"
-        variant="contained"
+    <>
+      {logInUserRejected && (
+        <PositionedSnackbar
+          element="logInUserRejected"
+          message="Error, something went wrong, try again"
+        />
+      )}
+      <form
+        className={styles.logIn}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
       >
-        Log in
-      </Button>
-    </form>
+        <TextField
+          className={styles.email}
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={handleChange}
+          size="small"
+          label="Email"
+          variant="outlined"
+        />
 
-    // <form className={styles} onSubmit={handleSubmit}>
-    //   <label>
-    //     Email
-    //     <input
-    //       name="email"
-    //       type="email"
-    //       value={email}
-    //       onChange={handleChange}
-    //     />
-    //   </label>
+        <FormControl
+          variant="outlined"
+          size="small"
+          className={styles.password}
+        >
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
+          <OutlinedInput
+            // id="outlined-adornment-password"
+            type={values.showPassword ? "text" : "password"}
+            value={values.password}
+            onChange={PassHandleChange("password")}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  className={styles.iconButton}
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
 
-    //   <label>
-    //     Password
-    //     <input
-    //       name="password"
-    //       type="password"
-    //       value={password}
-    //       onChange={handleChange}
-    //     />
-    //   </label>
-
-    //   <button type="submit">Log in</button>
-    //  </form>
+        <Button className={styles.button} type="submit" variant="contained">
+          Log in
+        </Button>
+      </form>
+    </>
   );
 }

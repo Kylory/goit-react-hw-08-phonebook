@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createAction } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
@@ -69,3 +70,6 @@ export const getUserInfo = createAsyncThunk(
     }
   }
 );
+
+export const logInUserRejected = createAction("auth/logInUserRejected");
+export const registerUserRejected = createAction("auth/registerUserRejected");

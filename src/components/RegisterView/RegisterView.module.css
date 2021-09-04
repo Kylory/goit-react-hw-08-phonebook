@@ -16,3 +16,13 @@
 .regForm .password {
   margin-bottom: 20px;
 }
+
+.regForm .button:hover {
+  color: #fff;
+  background-color: #3f51b5;
+}
+
+.regForm .button:focus {
+  color: #fff;
+  background-color: #3f51b5;
+}

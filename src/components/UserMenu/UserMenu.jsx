@@ -1,7 +1,7 @@
 import { authSelectors, authOperations } from "redux/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
-// import { makeStyles } from "@material-ui/core/styles";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import styles from "./UserMenu.module.css";
 
 export default function UserMenu() {
@@ -9,8 +9,10 @@ export default function UserMenu() {
   const dispatch = useDispatch();
   return (
     <div className={styles.UserMenu}>
+      <AccountCircleOutlinedIcon />
       <span className={styles.name}>Hello, {name}</span>
       <Button
+        className={styles.button}
         type="button"
         onClick={() => {
           dispatch(authOperations.logOut());
@@ -20,15 +22,6 @@ export default function UserMenu() {
       >
         Log out
       </Button>
-
-      {/* <button
-        type="button"
-        onClick={() => {
-          dispatch(authOperations.logOut());
-        }}
-      >
-        Log out
-      </button> */}
     </div>
   );
 }

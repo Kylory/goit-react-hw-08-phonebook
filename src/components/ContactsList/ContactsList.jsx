@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { contactsSelectors, contactsOperations } from "redux/contacts";
 import { authSelectors } from "redux/auth";
+import IconButton from "@material-ui/core/IconButton";
+import CancelTwoToneIcon from "@material-ui/icons/CancelTwoTone";
 import styles from "./ContactsList.module.css";
 
 export default function ContactsList() {
   const filteredContacts = useSelector(contactsSelectors.getFilteredContacts);
-  // const loading = useSelector(contactsSelectors.isLoading);
   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
   const error = useSelector(contactsSelectors.error);
 
@@ -35,13 +36,16 @@ export default function ContactsList() {
                 {contact.name}
                 {": "}
                 {contact.number}
-                <button
+                <IconButton
+                  className={styles.button}
+                  aria-label="delete"
+                  size="small"
                   onClick={() => {
                     deleteItem(contact.id);
                   }}
                 >
-                  Delete
-                </button>
+                  <CancelTwoToneIcon />
+                </IconButton>
               </li>
             ))}
         </ul>

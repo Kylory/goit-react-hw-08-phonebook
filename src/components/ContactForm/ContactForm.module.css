@@ -1,22 +1,3 @@
-/* .contactForm {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
-  padding-bottom: 30px;
-} */
-
-/* .contactForm input {
-  width: 200px;
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 10px;
-} */
-
-/* .contactForm button {
-  width: 120px;
-} */
-
 .contactForm {
   display: flex;
   flex-direction: column;
@@ -31,4 +12,14 @@
 
 .contactForm .number {
   margin-bottom: 20px;
+}
+
+.contactForm .button:hover {
+  color: #fff;
+  background-color: #3f51b5;
+}
+
+.contactForm .button:focus {
+  color: #fff;
+  background-color: #3f51b5;
 }
