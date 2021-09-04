@@ -26,6 +26,8 @@ export default function RegisterView() {
     showPassword: false,
   });
 
+  const isButtonDisable =
+    values.name === "" || values.email === "" || values.password === "";
   const registerUserRejected = useSelector(authSelectors.registerUserRejected);
   const dispatch = useDispatch();
 
@@ -47,25 +49,6 @@ export default function RegisterView() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    // switch (name) {
-    //   case "name":
-    //     // setStateName(value);
-    //     setValues({ ...values, [name]: value });
-    //     break;
-
-    //   case "email":
-    //     // setStateEmail(value);
-    //     setValues({ ...values, [name]: value });
-    //     break;
-
-    //   case "password":
-    //     // setStatePassword(value);
-    //     setValues({ ...values, [name]: value });
-    //     break;
-
-    //   default:
-    //     break;
-    // }
   };
 
   const PassHandleChange = (prop) => (event) => {
@@ -123,7 +106,6 @@ export default function RegisterView() {
             Password
           </InputLabel>
           <OutlinedInput
-            // id="outlined-adornment-password"
             type={values.showPassword ? "text" : "password"}
             value={values.password}
             onChange={PassHandleChange("password")}
@@ -145,6 +127,7 @@ export default function RegisterView() {
         </FormControl>
         <Button
           className={styles.button}
+          disabled={isButtonDisable}
           type="submit"
           size="small"
           variant="contained"

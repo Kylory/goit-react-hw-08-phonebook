@@ -20,17 +20,5 @@ export default function SearchContacts() {
       label="Find contacts by name"
       variant="outlined"
     />
-
-    // <label className={styles.searchContacts}>
-    //   Find contacts by name
-    //   <input
-    //     name="filter"
-    //     type="text"
-    //     value={filter}
-    //     onChange={(e) =>
-    //       dispatch(contactsOperations.filterContacts(e.target.value))
-    //     }
-    //   />
-    // </label>
   );
 }

@@ -25,6 +25,7 @@ export default function LogInView() {
     showPassword: false,
   });
 
+  const isButtonDisable = values.email === "" || values.password === "";
   const logInUserRejected = useSelector(authSelectors.logInUserRejected);
   const dispatch = useDispatch();
 
@@ -42,18 +43,6 @@ export default function LogInView() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    // switch (name) {
-    //   case "email":
-    //     setValues({ ...values, [name]: value });
-    //     break;
-
-    //   case "password":
-    //     setValues({ ...values, [name]: value });
-    //     break;
-
-    //   default:
-    //     break;
-    // }
   };
 
   const PassHandleChange = (prop) => (event) => {
@@ -102,7 +91,6 @@ export default function LogInView() {
             Password
           </InputLabel>
           <OutlinedInput
-            // id="outlined-adornment-password"
             type={values.showPassword ? "text" : "password"}
             value={values.password}
             onChange={PassHandleChange("password")}
@@ -123,7 +111,12 @@ export default function LogInView() {
           />
         </FormControl>
 
-        <Button className={styles.button} type="submit" variant="contained">
+        <Button
+          className={styles.button}
+          disabled={isButtonDisable}
+          type="submit"
+          variant="contained"
+        >
           Log in
         </Button>
       </form>

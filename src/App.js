@@ -36,14 +36,6 @@ const App = () => {
     refreshPage();
   }, [dispatch, isLoggedIn]);
 
-  // useEffect(() => {
-  //   dispatch(authOperations.getUserInfo());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(contactsOperations.DB_fetchContacts());
-  // }, [dispatch]);
-
   return (
     !isFetchingCurrentUser && (
       <Container>

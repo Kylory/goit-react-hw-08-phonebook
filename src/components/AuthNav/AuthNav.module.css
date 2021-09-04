@@ -1,8 +1,6 @@
 .link {
   margin-left: 10px;
-  /* display: flex; */
   text-decoration: none;
-  /* padding: 10px; */
   color: #000;
 }
 
@@ -13,9 +11,3 @@
 .AuthNav {
   margin-left: auto;
 }
-
-/* .LogIn {
-  margin-left: 10px;
-  text-decoration: none;
-  color: #000;
-} */

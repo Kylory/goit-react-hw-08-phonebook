@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { contactsOperations, contactsSelectors } from "redux/contacts";
 import { Button, TextField } from "@material-ui/core";
-// import Alert from "@material-ui/lab/Alert";
 import PositionedSnackbar from "../Snackbar";
 import styles from "./ContactForm.module.css";
 
@@ -10,6 +9,7 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [alreadyInContacts, setAlreadyInContacts] = useState(false);
+  const isButtonDisable = name === "" || number === "";
 
   const contacts = useSelector(contactsSelectors.getContacts);
   const dispatch = useDispatch();
@@ -37,10 +37,6 @@ export default function ContactForm() {
     if (contacts && contacts.find((contact) => contact.name === name)) {
       setAlreadyInContacts(true);
       return;
-      // } else if (!name) {
-      //   return alert("Type some name");
-      // } else if (!number) {
-      //   return alert("Type some number");
     }
 
     setAlreadyInContacts(false);
@@ -68,18 +64,7 @@ export default function ContactForm() {
   return (
     <>
       {alreadyInContacts && (
-        <PositionedSnackbar
-          // element="registerUserRejected"
-          message={name + " is already in contacts"}
-        />
-        // <Alert
-        //   severity="error"
-        //   onClose={() => {
-        //     setAlreadyInContacts(false);
-        //   }}
-        // >
-        //   {name + " is already in contacts"}
-        // </Alert>
+        <PositionedSnackbar message={name + " is already in contacts"} />
       )}
       <form
         className={styles.contactForm}
@@ -110,7 +95,7 @@ export default function ContactForm() {
         />
         <Button
           className={styles.button}
-          // disabled="true"
+          disabled={isButtonDisable}
           type="submit"
           size="small"
           variant="contained"
