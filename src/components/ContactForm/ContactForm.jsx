@@ -87,7 +87,7 @@ export default function ContactForm() {
           className={styles.number}
           onChange={handleChange}
           name="number"
-          type="text"
+          type="number"
           value={number}
           size="small"
           label="Number"
