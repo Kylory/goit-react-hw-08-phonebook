@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/HomeView/HomeView.module.css"],"names":[],"mappings":"AAAA,6BACE,iBAAkB,CAClB,gBACF","file":"5.f65c166d.chunk.css","sourcesContent":[".ContactsApp {\r\n  text-align: center;\r\n  margin-top: 100px;\r\n}\r\n"]}

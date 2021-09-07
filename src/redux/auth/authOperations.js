@@ -58,7 +58,7 @@ export const getUserInfo = createAsyncThunk(
     const LStoken = state.auth.token;
 
     if (LStoken === null) {
-      return thunkAPI.rejectWithValue(5);
+      return thunkAPI.rejectWithValue();
     }
 
     token.set(LStoken);
@@ -66,7 +66,7 @@ export const getUserInfo = createAsyncThunk(
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
-      return error;
+      return thunkAPI.rejectWithValue();
     }
   }
 );

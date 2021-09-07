@@ -8,17 +8,19 @@ export default function SearchContacts() {
   const dispatch = useDispatch();
 
   return (
-    <TextField
-      className={styles.searchContacts}
-      onChange={(e) =>
-        dispatch(contactsOperations.filterContacts(e.target.value))
-      }
-      name="filter"
-      type="text"
-      value={filter}
-      size="small"
-      label="Find contacts by name"
-      variant="outlined"
-    />
+    <div className={styles.searchContactsWrapper}>
+      <TextField
+        className={styles.searchContacts}
+        onChange={(e) =>
+          dispatch(contactsOperations.filterContacts(e.target.value))
+        }
+        name="filter"
+        type="text"
+        value={filter}
+        size="small"
+        label="Find contacts by name"
+        variant="outlined"
+      />
+    </div>
   );
 }
